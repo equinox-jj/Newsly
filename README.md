@@ -17,7 +17,7 @@
 * [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
 * [Coroutines](https://developer.android.com/kotlin/coroutines?gclsrc=ds&gclsrc=ds)
 * [Image Coil](https://github.com/coil-kt/coil)
-* [Dagger-Hilt]([https://airbnb.io/lottie/#/android](https://developer.android.com/training/dependency-injection/hilt-android))
+* [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 
 # Download Apk:
 * [NewsLy.apk](https://github.com/equinox-jj/Newsly/raw/main/docs/NewsLy.apk)
