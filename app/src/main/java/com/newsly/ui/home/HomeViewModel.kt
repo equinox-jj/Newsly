@@ -22,6 +22,8 @@ class HomeViewModel @Inject constructor(
     private val _newsResponses = MutableLiveData<ApiResource<NewsResponse>>()
     val newsResponses: LiveData<ApiResource<NewsResponse>> get() = _newsResponses
 
+    private var retryFunctionList: MutableList<() -> Unit> = mutableListOf()
+
     fun getNewsResponse() {
         viewModelScope.launch {
             repository.getTopNews()
@@ -31,15 +33,22 @@ class HomeViewModel @Inject constructor(
                 .catch {
                     it.message?.let { message ->
                         _newsResponses.postValue(ApiResource.Error(message))
+                        retryFunctionList.add(::getNewsResponse)
                     }
-                    Timber.tag("ViewModel Error").d(this.toString())
                 }
                 .collect { news ->
                     news.data.let {
                         _newsResponses.postValue(ApiResource.Success(it))
                     }
-                    Timber.tag("ViewModel Success").d(news.toString())
                 }
+        }
+    }
+
+    fun retryAllFailed() {
+        val currentList = retryFunctionList.toList()
+        retryFunctionList.clear()
+        currentList.forEach {
+            it.invoke()
         }
     }
 
