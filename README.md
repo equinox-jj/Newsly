@@ -20,4 +20,4 @@
 * [Dagger-Hilt]([https://airbnb.io/lottie/#/android](https://developer.android.com/training/dependency-injection/hilt-android))
 
 # Download Apk:
-* [NewsLy.apk]([https://drive.google.com/u/0/uc?id=1JQn1d7vzP7no4fkOqOF1rob7_VtvtL08&export=download&confirm=t](https://github.com/equinox-jj/Newsly/raw/main/docs/NewsLy.apk))
+* [NewsLy.apk](https://github.com/equinox-jj/Newsly/raw/main/docs/NewsLy.apk)
