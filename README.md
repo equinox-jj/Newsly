@@ -2,7 +2,7 @@
 .
 
 # Preview Apps:
-![Image Apps]([https://github.com/equinox-jj/GithubUserApps/blob/main/docs/apps_img.png](https://github.com/equinox-jj/Newsly/blob/main/docs/NewsLy.png))
+![Image Apps](https://github.com/equinox-jj/Newsly/blob/main/docs/NewsLy.png)
 
 # Features:
 * Using MVVM (Model-View-ViewModel) Architecture.
