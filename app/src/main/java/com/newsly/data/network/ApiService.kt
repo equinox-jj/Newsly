@@ -10,7 +10,7 @@ interface ApiService {
 
     @GET("top-headlines")
     suspend fun getTopNews(
-        @Query("country") sources: String = QUERY_SOURCES,
+        @Query("sources") sources: String = QUERY_SOURCES,
         @Query("apiKey") apiKey: String = API_KEY
     ): NewsResponse
 

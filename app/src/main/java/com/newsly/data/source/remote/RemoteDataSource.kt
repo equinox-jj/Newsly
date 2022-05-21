@@ -13,22 +13,7 @@ class RemoteDataSource @Inject constructor(
     private val apiService: ApiService
 ) {
 
-//    fun getTopNews(): Flow<ApiResponse<NewsResponse>> {
-//        return flow {
-//            try {
-//                val response = apiService.getTopNews()
-//                if (response.articles.isNotEmpty()) {
-//                    emit(ApiResponse.Success(response))
-//                } else {
-//                    emit(ApiResponse.Empty)
-//                }
-//            } catch (e: Exception) {
-//                emit(ApiResponse.Error(e.toString()))
-//            }
-//        }.flowOn(Dispatchers.IO)
-//    }
-
-    fun getTopNews(): Flow<ApiResponse<NewsResponse>> {
+    suspend fun getTopNews(): Flow<ApiResponse<NewsResponse>> {
         return flow {
             val response = apiService.getTopNews()
             emit(ApiResponse.Success(response))

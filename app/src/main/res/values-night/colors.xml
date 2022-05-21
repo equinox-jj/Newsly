@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="text_color">#FFFFFF</color>
-    <color name="text_detail_color">#000000</color>
-    <color name="button_color">#701111</color>
-    <color name="statusbar_color">#770F0F</color>
-    <color name="action_bar_color">#930808</color>
+    <color name="text_detail_color">#FFFFFF</color>
+    <color name="button_color">#393131</color>
+    <color name="statusbar_color">#000000</color>
+    <color name="action_bar_color">#2C2929</color>
 
 </resources>

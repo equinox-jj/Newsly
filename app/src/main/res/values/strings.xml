@@ -7,4 +7,8 @@
     <string name="read_full_article">Read Full Article</string>
     <string name="image_poster_detail_news">Image Poster Detail News</string>
     <string name="no_internet_connection">No Internet Connection</string>
+    <string name="image_no_internet">Image No Internet</string>
+    <string name="author">Author :</string>
+    <string name="no_author">Unknown</string>
+    <string name="no_desc">No Description About This News.</string>
 </resources>

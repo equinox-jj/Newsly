@@ -6,6 +6,6 @@ object Constants {
     const val BASE_URL = "https://newsapi.org/v2/"
 
     // QUERY
-    const val QUERY_SOURCES = "us"
+    const val QUERY_SOURCES = "bbc-news"
 
 }

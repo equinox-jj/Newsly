@@ -18,7 +18,7 @@ data class NewsResponse(
 data class ArticlesItem(
 
     @field:SerializedName("publishedAt") val publishedAt: String? = null,
-    @field:SerializedName("author") val author: @RawValue Any? = null,
+    @field:SerializedName("author") val author: String? = null,
     @field:SerializedName("urlToImage") val urlToImage: String? = null,
     @field:SerializedName("description") val description: String? = null,
     @field:SerializedName("source") val source: @RawValue Source,

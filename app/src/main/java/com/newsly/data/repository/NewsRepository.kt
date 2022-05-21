@@ -13,7 +13,7 @@ class NewsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    fun getTopNews(): Flow<ApiResource<NewsResponse>> = flow {
+    suspend fun getTopNews(): Flow<ApiResource<NewsResponse>> = flow {
         emit(ApiResource.Loading())
         when (val response = remoteDataSource.getTopNews().first()) {
             is ApiResponse.Success -> {

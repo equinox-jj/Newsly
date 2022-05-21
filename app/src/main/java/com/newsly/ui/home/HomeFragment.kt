@@ -54,7 +54,6 @@ class HomeFragment : Fragment() {
                 is ApiResource.Loading -> {
                     binding.shimmerNewsList.visibility = View.VISIBLE
                     binding.rvNewsList.visibility = View.GONE
-                    binding.btnErrorHome.visibility = View.GONE
                     binding.ivErrorHome.visibility = View.GONE
                     binding.tvErrorHome.visibility = View.GONE
                 }
@@ -82,7 +81,7 @@ class HomeFragment : Fragment() {
             "Error When Loading Data",
             Snackbar.LENGTH_INDEFINITE
         ).setAction("Retry") {
-            viewModels.retryAllFailed()
+            viewModels.retryFailed()
         }
         snackBar?.show()
     }

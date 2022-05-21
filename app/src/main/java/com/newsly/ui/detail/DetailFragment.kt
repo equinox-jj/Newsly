@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.newsly.R
 import com.newsly.data.model.ArticlesItem
 import com.newsly.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.jsoup.Jsoup
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -30,23 +32,39 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         iniView()
     }
 
     private fun iniView() {
         binding.apply {
-            val newsResult: ArticlesItem = args.newsParcel
+            val newsParcel: ArticlesItem = args.newsParcel
 
-            ivNewsDetail.load(newsResult.urlToImage) {
+            tvNewsDetailTitle.text = newsParcel.title
+
+            ivNewsDetail.load(newsParcel.urlToImage) {
                 crossfade(200)
+                error(R.drawable.ic_no_image)
             }
-            tvNewsDetailTitle.text = newsResult.title
-            tvNewsDetailDescription.text = newsResult.description
+
+            if (newsParcel.author != null) {
+                val auth = Jsoup.parse(newsParcel.author).text()
+                tvNewsDetailAuthor.text = auth
+            } else {
+                tvNewsDetailAuthor.text = getString(R.string.no_author)
+            }
+
+            if (newsParcel.content != null) {
+                val content = Jsoup.parse(newsParcel.content).text()
+                tvNewsDetailDescription.text = content
+            } else {
+                tvNewsDetailDescription.text = getString(R.string.no_desc)
+            }
+
             btnReadFullArticle.setOnClickListener {
-                val action = DetailFragmentDirections.actionDetailFragmentToArticleFragment(newsResult)
-                binding.btnReadFullArticle.findNavController().navigate(action)
+                val action = DetailFragmentDirections.actionDetailFragmentToArticleFragment(args.newsParcel)
+                findNavController().navigate(action)
             }
+
         }
     }
 

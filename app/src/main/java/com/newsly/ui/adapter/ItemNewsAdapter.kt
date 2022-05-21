@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.newsly.R
 import com.newsly.data.model.ArticlesItem
 import com.newsly.data.model.NewsResponse
 import com.newsly.databinding.ItemNewsListBinding
@@ -23,6 +24,7 @@ class ItemNewsAdapter : RecyclerView.Adapter<ItemNewsAdapter.NewsViewHolder>() {
         fun bind(newsResults: ArticlesItem) {
             binding.ivNewsImage.load(newsResults.urlToImage) {
                 crossfade(100)
+                error(R.drawable.ic_no_image)
             }
             binding.tvNewsTitle.text = newsResults.title
             if (newsResults.description != null) {
