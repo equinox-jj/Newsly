@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.newsly.databinding.FragmentArticleBinding
@@ -35,11 +34,15 @@ class ArticleFragment : Fragment() {
     private fun setupView() {
         binding.apply {
             wvArticle.webViewClient = object : WebViewClient() {}
+            wvArticle.loadUrl(args.webParcel.url)
             wvArticle.settings.javaScriptEnabled = true
             wvArticle.settings.domStorageEnabled = true
             wvArticle.clearHistory()
             wvArticle.clearCache(true)
-            wvArticle.loadUrl(args.webParcel.url)
+            wvArticle.clearSslPreferences()
+            WebStorage.getInstance().deleteAllData()
+            CookieManager.getInstance().removeAllCookies(null)
+            CookieManager.getInstance().flush()
         }
     }
 
