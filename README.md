@@ -2,7 +2,7 @@
 Newsly is a news application that can display the most popular news from bbc-news.
 
 # Preview Apps:
-![Image Apps](https://github.com/equinox-jj/Newsly/blob/main/docs/NewsLy.png)
+![Image App](https://github.com/equinox-jj/Newsly/blob/main/docs/NewsLy.png)
 
 # Features:
 * Using MVVM (Model-View-ViewModel) Architecture.
