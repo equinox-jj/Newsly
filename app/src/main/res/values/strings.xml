@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Newsly</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_news">Image News</string>
+    <string name="no_description">No Description.</string>
+    <string name="read_full_article">Read Full Article</string>
+    <string name="image_poster_detail_news">Image Poster Detail News</string>
+</resources>
