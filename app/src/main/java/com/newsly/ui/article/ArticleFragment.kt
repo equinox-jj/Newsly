@@ -37,6 +37,8 @@ class ArticleFragment : Fragment() {
             wvArticle.webViewClient = object : WebViewClient() {}
             wvArticle.settings.javaScriptEnabled = true
             wvArticle.settings.domStorageEnabled = true
+            wvArticle.clearHistory()
+            wvArticle.clearCache(true)
             wvArticle.loadUrl(args.webParcel.url)
         }
     }
