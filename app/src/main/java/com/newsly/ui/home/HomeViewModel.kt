@@ -1,46 +1,56 @@
 package com.newsly.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.newsly.data.ApiResource
-import com.newsly.data.model.NewsResponse
 import com.newsly.data.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: NewsRepository
+    private val repository: NewsRepository,
 ) : ViewModel() {
 
-    private val _newsResponses = MutableLiveData<ApiResource<NewsResponse>>()
-    val newsResponses: LiveData<ApiResource<NewsResponse>> get() = _newsResponses
+    private val _newsState = MutableStateFlow(HomeState())
+    val newsState: StateFlow<HomeState> = _newsState
 
     private var retryFunctionList: MutableList<() -> Unit> = mutableListOf()
 
-    fun getNewsResponse() {
-        viewModelScope.launch {
-            repository.getTopNews()
-                .onStart {
-                    _newsResponses.postValue(ApiResource.Loading())
-                }
-                .catch {
-                    it.message?.let { message ->
-                        _newsResponses.postValue(ApiResource.Error(message))
-                        retryFunctionList.add(::getNewsResponse)
+    init {
+        getNewsResponse()
+    }
+
+    private fun getNewsResponse() {
+        repository.getTopNews().onEach { result ->
+            when (result) {
+                is ApiResource.Success -> {
+                    _newsState.update { previousState ->
+                        previousState.copy(
+                            isLoading = false,
+                            data = result.data
+                        )
                     }
                 }
-                .collect { news ->
-                    news.data.let {
-                        _newsResponses.postValue(ApiResource.Success(it))
+                is ApiResource.Error -> {
+                    _newsState.update { previousState ->
+                        previousState.copy(
+                            isLoading = false,
+                            error = result.message ?: "An unexpected error occurred.",
+                            data = null
+                        )
                     }
                 }
-        }
+                is ApiResource.Loading -> {
+                    _newsState.update { previousState ->
+                        previousState.copy(
+                            isLoading = true
+                        )
+                    }
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 
     fun retryFailed() {

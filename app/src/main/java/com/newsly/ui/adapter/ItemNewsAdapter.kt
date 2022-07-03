@@ -12,11 +12,12 @@ import com.newsly.data.model.NewsResponse
 import com.newsly.databinding.ItemNewsListBinding
 import com.newsly.ui.home.HomeFragmentDirections
 import com.newsly.utils.DiffUtils
+import okhttp3.internal.immutableListOf
 import org.jsoup.Jsoup
 
 class ItemNewsAdapter : RecyclerView.Adapter<ItemNewsAdapter.NewsViewHolder>() {
 
-    private var newsResults = emptyList<ArticlesItem>()
+    private var newsResults = immutableListOf<ArticlesItem>()
 
     inner class NewsViewHolder(private val binding: ItemNewsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
